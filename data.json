@@ -1,0 +1,23 @@
+{
+  "skinProfile": {
+    "skinType": "combination",
+    "concerns": [
+      "acne",
+      "dark-circles"
+    ],
+    "sensitivity": "mild"
+  },
+  "routine": {
+    "morning": [],
+    "night": []
+  },
+  "habitHistory": [],
+  "notificationSettings": {
+    "enabled": true,
+    "morningTime": "08:00",
+    "nightTime": "20:00",
+    "morningEnabled": true,
+    "nightEnabled": true,
+    "soundEnabled": true
+  }
+}
