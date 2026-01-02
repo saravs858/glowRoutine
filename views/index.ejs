@@ -1,0 +1,285 @@
+<div class="hero-section">
+  <div class="container">
+    <div class="hero-content">
+      <div class="hero-image">
+        <img src="/images/hero-banner.png" alt="GlowRoutine" class="fade-in-up">
+      </div>
+
+      <h1 class="hero-title fade-in-up">Sua Rotina de Skincare Personalizada</h1>
+      <p class="hero-subtitle fade-in-up">
+        Descubra os produtos perfeitos para sua pele, organize sua rotina e acompanhe seus hábitos de cuidado com a pele.
+      </p>
+
+      <div class="hero-buttons fade-in-up">
+        <% if (hasRoutine) { %>
+          <a href="/dashboard" class="btn btn-primary">
+            Continuar Minha Rotina
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="9 18 15 12 9 6"></polyline>
+            </svg>
+          </a>
+          <a href="/quiz" class="btn btn-outline">Fazer Novo Quiz</a>
+        <% } else { %>
+          <a href="/quiz" class="btn btn-primary">
+            Começar Agora
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+              <polygon points="12 2 15.09 10.26 24 12.52 18 18.77 19.54 27.97 12 23.77 4.46 27.97 6 18.77 0 12.52 8.91 10.26 12 2"></polygon>
+            </svg>
+          </a>
+        <% } %>
+      </div>
+    </div>
+
+    <!-- Features -->
+    <div class="features-grid fade-in-up">
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Quiz Inteligente</h3>
+        <p>Responda perguntas sobre seu tipo de pele e receba recomendações personalizadas</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🛡️</div>
+        <h3>Rotina Organizada</h3>
+        <p>Arraste e solte para organizar sua rotina de manhã e noite na ordem perfeita</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">❤️</div>
+        <h3>Acompanhe Hábitos</h3>
+        <p>Marque seus dias de uso, veja seu progresso e mantenha a consistência</p>
+      </div>
+    </div>
+
+    <!-- Como Funciona -->
+    <div class="how-it-works fade-in-up">
+      <h2>Como Funciona</h2>
+      <div class="steps">
+        <div class="step">
+          <div class="step-number">1</div>
+          <h4>Quiz</h4>
+          <p>Responda sobre sua pele</p>
+        </div>
+        <div class="step">
+          <div class="step-number">2</div>
+          <h4>Produtos</h4>
+          <p>Receba recomendações</p>
+        </div>
+        <div class="step">
+          <div class="step-number">3</div>
+          <h4>Organize</h4>
+          <p>Monte sua rotina</p>
+        </div>
+        <div class="step">
+          <div class="step-number">4</div>
+          <h4>Acompanhe</h4>
+          <p>Veja seu progresso</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA Final -->
+    <div class="cta-section fade-in-up">
+      <h2>Pronto para começar?</h2>
+      <p>Leve apenas 5 minutos para descobrir os produtos perfeitos para sua pele e criar sua rotina personalizada.</p>
+      <a href="/quiz" class="btn btn-primary">
+        Começar Agora
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="12 2 15.09 10.26 24 12.52 18 18.77 19.54 27.97 12 23.77 4.46 27.97 6 18.77 0 12.52 8.91 10.26 12 2"></polygon>
+        </svg>
+      </a>
+    </div>
+  </div>
+</div>
+
+<style>
+  .hero-section {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-background) 100%);
+    padding: 60px 20px;
+  }
+
+  .hero-content {
+    text-align: center;
+    margin-bottom: 60px;
+  }
+
+  .hero-image {
+    margin-bottom: 40px;
+  }
+
+  .hero-image img {
+    max-width: 400px;
+    width: 100%;
+    height: auto;
+    border-radius: 20px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--color-foreground);
+    margin-bottom: 20px;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 1.1rem;
+    color: var(--color-muted-foreground);
+    margin-bottom: 40px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-bottom: 80px;
+  }
+
+  .features-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 30px;
+    margin-bottom: 80px;
+  }
+
+  .feature-card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 15px;
+    padding: 30px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+  }
+
+  .feature-icon {
+    font-size: 2.5rem;
+    margin-bottom: 15px;
+  }
+
+  .feature-card h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    margin-bottom: 10px;
+  }
+
+  .feature-card p {
+    color: var(--color-muted-foreground);
+    font-size: 0.95rem;
+  }
+
+  .how-it-works {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 20px;
+    padding: 50px 30px;
+    margin-bottom: 80px;
+  }
+
+  .how-it-works h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--color-foreground);
+  }
+
+  .steps {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 30px;
+  }
+
+  .step {
+    text-align: center;
+  }
+
+  .step-number {
+    width: 50px;
+    height: 50px;
+    background: var(--color-primary);
+    color: var(--color-primary-foreground);
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.5rem;
+    margin: 0 auto 15px;
+  }
+
+  .step h4 {
+    font-weight: 600;
+    color: var(--color-foreground);
+    margin-bottom: 5px;
+  }
+
+  .step p {
+    color: var(--color-muted-foreground);
+    font-size: 0.9rem;
+  }
+
+  .cta-section {
+    background: linear-gradient(135deg, var(--color-primary)/10 0%, var(--color-accent)/10 100%);
+    border: 2px solid var(--color-primary)/20;
+    border-radius: 20px;
+    padding: 50px 30px;
+    text-align: center;
+  }
+
+  .cta-section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2rem;
+    color: var(--color-foreground);
+    margin-bottom: 15px;
+  }
+
+  .cta-section p {
+    color: var(--color-muted-foreground);
+    margin-bottom: 30px;
+    max-width: 500px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  @media (max-width: 768px) {
+    .hero-title {
+      font-size: 2rem;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>

@@ -1,0 +1,384 @@
+<div class="settings-container">
+  <div class="container">
+    <div class="settings-header">
+      <a href="/dashboard" class="back-btn">← Voltar</a>
+      <h1>Configurações</h1>
+      <p>Personalize sua experiência no GlowRoutine</p>
+    </div>
+
+    <!-- Notificações -->
+    <div class="settings-section fade-in-up">
+      <h2>🔔 Notificações</h2>
+
+      <form id="notificationForm" class="settings-form">
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="enabled" <%= settings.enabled ? 'checked' : '' %>>
+            <span>Ativar Notificações</span>
+          </label>
+          <p class="form-help">Receba lembretes para seguir sua rotina</p>
+        </div>
+
+        <div class="form-group">
+          <label for="morningTime">Horário da Manhã</label>
+          <input type="time" id="morningTime" name="morningTime" value="<%= settings.morningTime %>" required>
+          <label class="checkbox-label">
+            <input type="checkbox" name="morningEnabled" <%= settings.morningEnabled ? 'checked' : '' %>>
+            <span>Ativar lembrete da manhã</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label for="nightTime">Horário da Noite</label>
+          <input type="time" id="nightTime" name="nightTime" value="<%= settings.nightTime %>" required>
+          <label class="checkbox-label">
+            <input type="checkbox" name="nightEnabled" <%= settings.nightEnabled ? 'checked' : '' %>>
+            <span>Ativar lembrete da noite</span>
+          </label>
+        </div>
+
+        <div class="form-group">
+          <label class="checkbox-label">
+            <input type="checkbox" name="soundEnabled" <%= settings.soundEnabled ? 'checked' : '' %>>
+            <span>Som de Notificação</span>
+          </label>
+          <p class="form-help">Reproduzir som ao receber notificação</p>
+        </div>
+
+        <button type="submit" class="btn btn-primary">Salvar Configurações</button>
+      </form>
+    </div>
+
+    <!-- Dados e Privacidade -->
+    <div class="settings-section fade-in-up" style="animation-delay: 100ms;">
+      <h2>💾 Dados e Privacidade</h2>
+
+      <div class="info-box">
+        <p><strong>Armazenamento Local:</strong> Todos os seus dados (rotina, histórico, conquistas) são armazenados localmente no seu navegador. Nós não temos acesso a essas informações.</p>
+      </div>
+
+      <div class="warning-box">
+        <p><strong>⚠️ Importante:</strong> Se você limpar o histórico do navegador ou desinstalar cookies, todos os seus dados serão perdidos.</p>
+      </div>
+    </div>
+
+    <!-- Zona de Perigo -->
+    <div class="settings-section fade-in-up" style="animation-delay: 200ms;">
+      <h2>⚠️ Zona de Perigo</h2>
+
+      <div class="danger-box">
+        <h3>Resetar Tudo</h3>
+        <p>Apague todo seu histórico, rotina e dados. Você voltará ao estado inicial do app. Esta ação não pode ser desfeita.</p>
+        <button class="btn btn-danger" onclick="resetApp()">Resetar e Começar do Zero</button>
+      </div>
+
+      <div class="danger-box">
+        <h3>Apagar Todos os Dados</h3>
+        <p>Remova permanentemente todos os seus dados do navegador. Você precisará fazer o quiz novamente para usar o app.</p>
+        <button class="btn btn-danger" onclick="clearAllData()">Apagar Tudo</button>
+      </div>
+    </div>
+
+    <!-- Sobre -->
+    <div class="settings-section fade-in-up" style="animation-delay: 300ms;">
+      <h2>ℹ️ Sobre</h2>
+
+      <div class="about-content">
+        <div class="about-item">
+          <strong>GlowRoutine</strong>
+          <p>Sua rotina de skincare personalizada</p>
+        </div>
+
+        <div class="about-item">
+          <strong>Versão</strong>
+          <p>1.0.0</p>
+        </div>
+
+        <div class="about-item">
+          <strong>Recursos</strong>
+          <ul>
+            <li>Quiz personalizado</li>
+            <li>Recomendações de produtos</li>
+            <li>Organização de rotina com drag & drop</li>
+            <li>Histórico de hábitos</li>
+            <li>Sistema de conquistas</li>
+            <li>Notificações e lembretes</li>
+            <li>Modo claro e escuro</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<style>
+  .settings-container {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-background) 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .settings-header {
+    margin-bottom: 40px;
+  }
+
+  .back-btn {
+    display: inline-block;
+    color: var(--color-primary);
+    text-decoration: none;
+    margin-bottom: 20px;
+    transition: all 0.3s ease;
+  }
+
+  .back-btn:hover {
+    transform: translateX(-5px);
+  }
+
+  .settings-header h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--color-foreground);
+    margin-bottom: 10px;
+  }
+
+  .settings-header p {
+    color: var(--color-muted-foreground);
+    font-size: 1.1rem;
+  }
+
+  .settings-section {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .settings-section h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    margin-bottom: 20px;
+  }
+
+  .settings-form {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .form-group label:not(.checkbox-label) {
+    font-weight: 600;
+    color: var(--color-foreground);
+  }
+
+  .checkbox-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    cursor: pointer;
+    color: var(--color-foreground);
+    font-weight: 500;
+  }
+
+  .checkbox-label input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+    accent-color: var(--color-primary);
+  }
+
+  .form-help {
+    font-size: 0.9rem;
+    color: var(--color-muted-foreground);
+    margin: 0;
+  }
+
+  .info-box {
+    background: #e3f2fd;
+    border-left: 4px solid #2196f3;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    color: #1565c0;
+  }
+
+  body.dark-mode .info-box {
+    background: #1a237e;
+    color: #90caf9;
+  }
+
+  .warning-box {
+    background: #fff3e0;
+    border-left: 4px solid #ff9800;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 15px;
+    color: #e65100;
+  }
+
+  body.dark-mode .warning-box {
+    background: #331a00;
+    color: #ffb74d;
+  }
+
+  .danger-box {
+    background: #ffebee;
+    border: 1px solid #ffcdd2;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+
+  body.dark-mode .danger-box {
+    background: #3e2723;
+    border-color: #5d4037;
+  }
+
+  .danger-box h3 {
+    color: #c62828;
+    margin-bottom: 10px;
+  }
+
+  body.dark-mode .danger-box h3 {
+    color: #ef5350;
+  }
+
+  .danger-box p {
+    color: var(--color-muted-foreground);
+    margin-bottom: 15px;
+  }
+
+  .btn-danger {
+    background-color: #f44336;
+    color: white;
+  }
+
+  .btn-danger:hover {
+    background-color: #d32f2f;
+  }
+
+  .about-content {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .about-item {
+    padding-bottom: 15px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .about-item:last-child {
+    border-bottom: none;
+  }
+
+  .about-item strong {
+    display: block;
+    color: var(--color-foreground);
+    margin-bottom: 5px;
+  }
+
+  .about-item p,
+  .about-item li {
+    color: var(--color-muted-foreground);
+    margin: 0;
+  }
+
+  .about-item ul {
+    margin: 10px 0 0 20px;
+    padding: 0;
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .settings-header h1 {
+      font-size: 1.8rem;
+    }
+
+    .settings-section {
+      padding: 20px;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById('notificationForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const data = {
+      enabled: formData.get('enabled') ? 'on' : 'off',
+      morningTime: formData.get('morningTime'),
+      nightTime: formData.get('nightTime'),
+      morningEnabled: formData.get('morningEnabled') ? 'on' : 'off',
+      nightEnabled: formData.get('nightEnabled') ? 'on' : 'off',
+      soundEnabled: formData.get('soundEnabled') ? 'on' : 'off',
+    };
+
+    try {
+      const response = await fetch('/settings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        showNotification('✨ Configurações salvas!', 'success');
+      }
+    } catch (error) {
+      showNotification('Erro ao salvar configurações', 'error');
+    }
+  });
+
+  function resetApp() {
+    if (confirm('Tem certeza? Isso apagará todo seu histórico, rotina e dados.')) {
+      fetch('/clear-all', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            showNotification('🔄 App resetado', 'success');
+            setTimeout(() => window.location.href = '/', 1500);
+          }
+        })
+        .catch(err => showNotification('Erro ao resetar', 'error'));
+    }
+  }
+
+  function clearAllData() {
+    if (confirm('Tem certeza? Isso apagará todos os seus dados permanentemente.')) {
+      fetch('/clear-all', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            showNotification('🗑️ Dados apagados', 'success');
+            setTimeout(() => window.location.href = '/', 1500);
+          }
+        })
+        .catch(err => showNotification('Erro ao apagar dados', 'error'));
+    }
+  }
+</script>

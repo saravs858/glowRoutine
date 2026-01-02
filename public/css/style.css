@@ -1,0 +1,336 @@
+/* Variáveis de Cores - Tema Rosa */
+:root {
+  --color-primary: #e8a5c2;
+  --color-primary-foreground: #ffffff;
+  --color-secondary: #f5e6f0;
+  --color-secondary-foreground: #2d1b3d;
+  --color-background: #fefbfc;
+  --color-foreground: #1a1a1a;
+  --color-card: #ffffff;
+  --color-card-foreground: #1a1a1a;
+  --color-border: #e8d5e3;
+  --color-muted: #f0e6eb;
+  --color-muted-foreground: #6b5b6f;
+  --color-accent: #d4a5c2;
+  --color-accent-foreground: #ffffff;
+
+  --radius: 10px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.05);
+  --shadow-md: 0 4px 16px rgba(0, 0, 0, 0.1);
+  --shadow-lg: 0 10px 32px rgba(0, 0, 0, 0.15);
+
+  --font-serif: 'Playfair Display', serif;
+  --font-sans: 'Inter', sans-serif;
+}
+
+/* Modo Escuro */
+body.dark-mode {
+  --color-background: #0f0a12;
+  --color-foreground: #f5f5f5;
+  --color-card: #1a1220;
+  --color-card-foreground: #f5f5f5;
+  --color-border: #3d2d4a;
+  --color-muted: #2a1f35;
+  --color-muted-foreground: #b8a8c0;
+  --color-secondary: #2a1f35;
+  --color-secondary-foreground: #e8a5c2;
+}
+
+/* Reset e Base */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  line-height: 1.6;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+/* Container */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 20px;
+}
+
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  background-color: var(--color-background);
+  border-bottom: 1px solid var(--color-border);
+  backdrop-filter: blur(10px);
+  background-color: rgba(255, 251, 252, 0.95);
+}
+
+body.dark-mode .header {
+  background-color: rgba(15, 10, 18, 0.95);
+}
+
+.header-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 70px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: var(--color-foreground);
+  transition: opacity 0.3s ease;
+}
+
+.logo:hover {
+  opacity: 0.8;
+}
+
+.logo-icon {
+  width: 40px;
+  height: 40px;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-accent));
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+}
+
+.logo-text h1 {
+  font-family: var(--font-serif);
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.logo-text p {
+  font-size: 0.75rem;
+  color: var(--color-muted-foreground);
+  margin: 0;
+}
+
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.icon-btn,
+.theme-toggle {
+  width: 40px;
+  height: 40px;
+  border: none;
+  background: transparent;
+  border-radius: 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--color-foreground);
+  transition: all 0.3s ease;
+}
+
+.icon-btn:hover,
+.theme-toggle:hover {
+  background-color: var(--color-muted);
+}
+
+.theme-toggle {
+  position: relative;
+}
+
+.sun-icon,
+.moon-icon {
+  position: absolute;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.sun-icon {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+.moon-icon {
+  opacity: 0;
+  transform: rotate(180deg);
+}
+
+body.dark-mode .sun-icon {
+  opacity: 0;
+  transform: rotate(180deg);
+}
+
+body.dark-mode .moon-icon {
+  opacity: 1;
+  transform: rotate(0deg);
+}
+
+/* Main Content */
+.main-content {
+  min-height: calc(100vh - 140px);
+}
+
+/* Footer */
+.footer {
+  background-color: var(--color-muted);
+  color: var(--color-muted-foreground);
+  padding: 30px 20px;
+  text-align: center;
+  border-top: 1px solid var(--color-border);
+}
+
+/* Botões */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 24px;
+  border: none;
+  border-radius: var(--radius);
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-decoration: none;
+  font-family: var(--font-sans);
+}
+
+.btn-primary {
+  background-color: var(--color-primary);
+  color: var(--color-primary-foreground);
+  box-shadow: var(--shadow-sm);
+}
+
+.btn-primary:hover {
+  background-color: #d98fb5;
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 2px solid var(--color-primary);
+}
+
+.btn-outline:hover {
+  background-color: var(--color-primary)/10;
+}
+
+/* Cards */
+.card {
+  background-color: var(--color-card);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  padding: 20px;
+  box-shadow: var(--shadow-sm);
+  transition: all 0.3s ease;
+}
+
+.card:hover {
+  box-shadow: var(--shadow-md);
+  transform: translateY(-2px);
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="time"],
+select,
+textarea {
+  width: 100%;
+  padding: 10px 15px;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius);
+  background-color: var(--color-background);
+  color: var(--color-foreground);
+  font-family: var(--font-sans);
+  transition: all 0.3s ease;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="time"]:focus,
+select:focus,
+textarea:focus {
+  outline: none;
+  border-color: var(--color-primary);
+  box-shadow: 0 0 0 3px var(--color-primary)/20;
+}
+
+/* Tipografia */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+h4 {
+  font-size: 1.2rem;
+}
+
+/* Utilitários */
+.text-center {
+  text-align: center;
+}
+
+.mt-20 {
+  margin-top: 20px;
+}
+
+.mb-20 {
+  margin-bottom: 20px;
+}
+
+.gap-20 {
+  gap: 20px;
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  h2 {
+    font-size: 1.5rem;
+  }
+
+  .header-content {
+    height: 60px;
+  }
+
+  .logo-text h1 {
+    font-size: 1.1rem;
+  }
+
+  .container {
+    padding: 0 15px;
+  }
+}

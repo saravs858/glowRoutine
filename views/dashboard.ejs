@@ -1,0 +1,295 @@
+<div class="dashboard-container">
+  <div class="container">
+    <div class="dashboard-header">
+      <h1>Seu Dashboard</h1>
+      <p>Acompanhe sua rotina diária</p>
+    </div>
+
+    <!-- Estatísticas -->
+    <div class="stats-grid fade-in-up">
+      <div class="stat-card">
+        <div class="stat-icon">🔥</div>
+        <div class="stat-content">
+          <p class="stat-label">Dias Consecutivos</p>
+          <p class="stat-value"><%= consecutiveDays %></p>
+        </div>
+      </div>
+
+      <div class="stat-card">
+        <div class="stat-icon">✨</div>
+        <div class="stat-content">
+          <p class="stat-label">Hoje</p>
+          <p class="stat-value"><%= todayHabit.completedMorning && todayHabit.completedNight ? '✓ Completo' : 'Em Progresso' %></p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Checklist Diário -->
+    <div class="checklist-section fade-in-up" style="animation-delay: 100ms;">
+      <h2>Checklist Diário</h2>
+
+      <!-- Manhã -->
+      <div class="routine-check">
+        <h3>☀️ Rotina da Manhã</h3>
+        <div class="products-check">
+          <% if (routine && routine.morning && routine.morning.length > 0) { %>
+            <% routine.morning.forEach(product => { %>
+              <div class="product-check">
+                <input type="checkbox" id="morning-<%= product.id %>" <%= todayHabit.completedMorning ? 'checked disabled' : '' %>>
+                <label for="morning-<%= product.id %>"><%= product.name %></label>
+              </div>
+            <% }); %>
+          <% } else { %>
+            <p class="no-products">Nenhum produto na rotina matinal</p>
+          <% } %>
+        </div>
+        <button class="btn btn-primary" onclick="completeRoutine('morning')" <%= todayHabit.completedMorning ? 'disabled' : '' %>>
+          <%= todayHabit.completedMorning ? '✓ Concluída' : 'Marcar como Concluída' %>
+        </button>
+      </div>
+
+      <!-- Noite -->
+      <div class="routine-check">
+        <h3>🌙 Rotina da Noite</h3>
+        <div class="products-check">
+          <% if (routine && routine.night && routine.night.length > 0) { %>
+            <% routine.night.forEach(product => { %>
+              <div class="product-check">
+                <input type="checkbox" id="night-<%= product.id %>" <%= todayHabit.completedNight ? 'checked disabled' : '' %>>
+                <label for="night-<%= product.id %>"><%= product.name %></label>
+              </div>
+            <% }); %>
+          <% } else { %>
+            <p class="no-products">Nenhum produto na rotina noturna</p>
+          <% } %>
+        </div>
+        <button class="btn btn-primary" onclick="completeRoutine('night')" <%= todayHabit.completedNight ? 'disabled' : '' %>>
+          <%= todayHabit.completedNight ? '✓ Concluída' : 'Marcar como Concluída' %>
+        </button>
+      </div>
+    </div>
+
+    <!-- Ações -->
+    <div class="action-buttons fade-in-up" style="animation-delay: 200ms;">
+      <a href="/profile" class="btn btn-outline">
+        👑 Meu Perfil
+      </a>
+      <a href="/recommendations" class="btn btn-outline">
+        ✏️ Editar Rotina
+      </a>
+      <button class="btn btn-outline" onclick="resetToday()">
+        🔄 Resetar Hoje
+      </button>
+    </div>
+  </div>
+</div>
+
+<style>
+  .dashboard-container {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-background) 100%);
+    min-height: 100vh;
+    padding: 40px 20px;
+  }
+
+  .dashboard-header {
+    text-align: center;
+    margin-bottom: 40px;
+  }
+
+  .dashboard-header h1 {
+    font-family: var(--font-serif);
+    font-size: 2.5rem;
+    color: var(--color-foreground);
+    margin-bottom: 10px;
+  }
+
+  .dashboard-header p {
+    color: var(--color-muted-foreground);
+    font-size: 1.1rem;
+  }
+
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    margin-bottom: 40px;
+  }
+
+  .stat-card {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 15px;
+    padding: 25px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .stat-icon {
+    font-size: 2.5rem;
+  }
+
+  .stat-content {
+    flex: 1;
+  }
+
+  .stat-label {
+    color: var(--color-muted-foreground);
+    font-size: 0.9rem;
+    margin: 0;
+  }
+
+  .stat-value {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: var(--color-foreground);
+    margin: 5px 0 0 0;
+  }
+
+  .checklist-section {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 15px;
+    padding: 30px;
+    margin-bottom: 30px;
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .checklist-section h2 {
+    font-family: var(--font-serif);
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    color: var(--color-foreground);
+  }
+
+  .routine-check {
+    margin-bottom: 30px;
+    padding-bottom: 30px;
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .routine-check:last-child {
+    border-bottom: none;
+    margin-bottom: 0;
+    padding-bottom: 0;
+  }
+
+  .routine-check h3 {
+    font-size: 1.2rem;
+    color: var(--color-foreground);
+    margin-bottom: 15px;
+  }
+
+  .products-check {
+    margin-bottom: 15px;
+  }
+
+  .product-check {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px 0;
+  }
+
+  .product-check input[type="checkbox"] {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    accent-color: var(--color-primary);
+  }
+
+  .product-check label {
+    cursor: pointer;
+    color: var(--color-foreground);
+    flex: 1;
+  }
+
+  .product-check input[type="checkbox"]:checked + label {
+    color: var(--color-muted-foreground);
+    text-decoration: line-through;
+  }
+
+  .no-products {
+    color: var(--color-muted-foreground);
+    font-style: italic;
+    padding: 10px 0;
+  }
+
+  .action-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    flex-wrap: wrap;
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .fade-in-up {
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .dashboard-header h1 {
+      font-size: 1.8rem;
+    }
+
+    .checklist-section {
+      padding: 20px;
+    }
+
+    .action-buttons {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+</style>
+
+<script>
+  function completeRoutine(timeOfDay) {
+    fetch('/complete-routine', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ timeOfDay }),
+    })
+    .then(res => res.json())
+    .then(data => {
+      if (data.success) {
+        showNotification(`✨ Rotina de ${timeOfDay === 'morning' ? 'manhã' : 'noite'} marcada!`, 'success');
+        setTimeout(() => location.reload(), 1500);
+      }
+    })
+    .catch(err => showNotification('Erro ao completar rotina', 'error'));
+  }
+
+  function resetToday() {
+    if (confirm('Deseja resetar a rotina de hoje?')) {
+      fetch('/reset-today', { method: 'POST' })
+        .then(res => res.json())
+        .then(data => {
+          if (data.success) {
+            showNotification('🔄 Rotina resetada', 'success');
+            setTimeout(() => location.reload(), 1500);
+          }
+        })
+        .catch(err => showNotification('Erro ao resetar', 'error'));
+    }
+  }
+</script>

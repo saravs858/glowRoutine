@@ -1,0 +1,271 @@
+<div class="quiz-container">
+  <div class="container">
+    <div class="quiz-header">
+      <h1>Descubra Seu Perfil de Pele</h1>
+      <p>Responda 3 perguntas simples para receber recomendações personalizadas</p>
+    </div>
+
+    <form id="quizForm" class="quiz-form">
+      <!-- Pergunta 1: Tipo de Pele -->
+      <div class="quiz-question fade-in-up">
+        <h2>1. Qual é o seu tipo de pele?</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="skinType" value="oily" required>
+            <span class="option-content">
+              <strong>Oleosa</strong>
+              <small>Brilho excessivo, poros dilatados</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="skinType" value="dry" required>
+            <span class="option-content">
+              <strong>Seca</strong>
+              <small>Ressecamento, descamação</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="skinType" value="combination" required>
+            <span class="option-content">
+              <strong>Mista</strong>
+              <small>Oleosa em algumas áreas, seca em outras</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="skinType" value="sensitive" required>
+            <span class="option-content">
+              <strong>Sensível</strong>
+              <small>Irritação fácil, vermelhidão</small>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Pergunta 2: Preocupações -->
+      <div class="quiz-question fade-in-up" style="animation-delay: 100ms;">
+        <h2>2. Quais são suas principais preocupações? (Selecione uma ou mais)</h2>
+        <div class="options">
+          <label class="option">
+            <input type="checkbox" name="concerns" value="acne">
+            <span class="option-content">
+              <strong>Acne</strong>
+              <small>Espinhas e inflamação</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="checkbox" name="concerns" value="spots">
+            <span class="option-content">
+              <strong>Manchas</strong>
+              <small>Hiperpigmentação</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="checkbox" name="concerns" value="wrinkles">
+            <span class="option-content">
+              <strong>Rugas</strong>
+              <small>Linhas de expressão</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="checkbox" name="concerns" value="dark-circles">
+            <span class="option-content">
+              <strong>Olheiras</strong>
+              <small>Escurecimento sob os olhos</small>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <!-- Pergunta 3: Sensibilidade -->
+      <div class="quiz-question fade-in-up" style="animation-delay: 200ms;">
+        <h2>3. Você tem alguma sensibilidade especial?</h2>
+        <div class="options">
+          <label class="option">
+            <input type="radio" name="sensitivity" value="none" required>
+            <span class="option-content">
+              <strong>Nenhuma</strong>
+              <small>Pele resistente</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="sensitivity" value="mild" required>
+            <span class="option-content">
+              <strong>Leve</strong>
+              <small>Ocasionalmente sensível</small>
+            </span>
+          </label>
+          <label class="option">
+            <input type="radio" name="sensitivity" value="high" required>
+            <span class="option-content">
+              <strong>Alta</strong>
+              <small>Muito sensível a produtos</small>
+            </span>
+          </label>
+        </div>
+      </div>
+
+      <button type="submit" class="btn btn-primary btn-large fade-in-up" style="animation-delay: 300ms;">
+        Ver Recomendações
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polyline points="9 18 15 12 9 6"></polyline>
+        </svg>
+      </button>
+    </form>
+  </div>
+</div>
+
+<style>
+  .quiz-container {
+    background: linear-gradient(135deg, var(--color-secondary) 0%, var(--color-background) 100%);
+    min-height: 100vh;
+    padding: 60px 20px;
+  }
+
+  .quiz-header {
+    text-align: center;
+    margin-bottom: 50px;
+  }
+
+  .quiz-header h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 2.5rem;
+    color: var(--color-foreground);
+    margin-bottom: 15px;
+  }
+
+  .quiz-header p {
+    font-size: 1.1rem;
+    color: var(--color-muted-foreground);
+  }
+
+  .quiz-form {
+    max-width: 700px;
+    margin: 0 auto;
+  }
+
+  .quiz-question {
+    background: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: 15px;
+    padding: 40px;
+    margin-bottom: 40px;
+    animation: fadeInUp 0.6s ease-out forwards;
+    opacity: 0;
+  }
+
+  .quiz-question h2 {
+    font-size: 1.3rem;
+    font-weight: 600;
+    color: var(--color-foreground);
+    margin-bottom: 25px;
+  }
+
+  .options {
+    display: grid;
+    gap: 15px;
+  }
+
+  .option {
+    display: flex;
+    align-items: center;
+    padding: 15px;
+    border: 2px solid var(--color-border);
+    border-radius: 10px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    background: var(--color-background);
+  }
+
+  .option:hover {
+    border-color: var(--color-primary);
+    background: var(--color-primary)/5;
+  }
+
+  .option input {
+    margin-right: 15px;
+    cursor: pointer;
+    width: 20px;
+    height: 20px;
+    accent-color: var(--color-primary);
+  }
+
+  .option input:checked + .option-content {
+    color: var(--color-primary);
+    font-weight: 600;
+  }
+
+  .option-content {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+  }
+
+  .option-content strong {
+    color: var(--color-foreground);
+  }
+
+  .option-content small {
+    color: var(--color-muted-foreground);
+    font-size: 0.85rem;
+  }
+
+  .btn-large {
+    width: 100%;
+    padding: 15px 30px;
+    font-size: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  @keyframes fadeInUp {
+    from {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  @media (max-width: 768px) {
+    .quiz-header h1 {
+      font-size: 1.8rem;
+    }
+
+    .quiz-question {
+      padding: 25px;
+    }
+  }
+</style>
+
+<script>
+  document.getElementById('quizForm').addEventListener('submit', async (e) => {
+    e.preventDefault();
+
+    const formData = new FormData(e.target);
+    const concerns = formData.getAll('concerns');
+
+    const data = {
+      skinType: formData.get('skinType'),
+      concerns: concerns.length > 0 ? concerns : ['none'],
+      sensitivity: formData.get('sensitivity'),
+    };
+
+    try {
+      const response = await fetch('/quiz', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+
+      if (response.ok) {
+        window.location.href = '/recommendations';
+      }
+    } catch (error) {
+      console.error('Erro:', error);
+    }
+  });
+</script>
